@@ -8,9 +8,12 @@
   },
   "author": "h4roru 4zure",
   "license": "ISC",
-  
   "devDependencies": {
     "xmlhttprequest": "^1.8.0"
+  },
+  
+  "dependencies": {
+    "node-fetch": "^3.3.0"
   },
   "type": "module"
 }
