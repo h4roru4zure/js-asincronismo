@@ -21,7 +21,7 @@ function fetchData(urlApi){
 // //todo se realizo con exito   
 
 fetchData(`${API}/products`) 
-    .then(response => response.json())
+    .then(response => response.json()) 
     .then(products =>{
         console.log(products);
         return fetchData(`${API}/products/${products[0].id}`)
