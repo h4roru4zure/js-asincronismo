@@ -10,10 +10,30 @@ function fetchData(urlApi){
 
 //el llamado
 
-fetchData(`${API}/products`)                //fetchdata recibe la url de la api (endpoint
-   .then(response => response.json())       //se hace la conversión de la data recibida a un objeto json
-   .then(products => console.log(products)) //ahora mostramos los datos de products  
-   .catch(error => console.log(error));     // lanzamos el catch en caso de error
+// fetchData(`${API}/products`)                //fetchdata recibe la url de la api (endpoint
+//    .then(response => response.json())       //se hace la conversión de la data recibida a un objeto json
+//    .then(products => console.log(products)) //ahora mostramos los datos de products  
+//    .then(() =>{
+//     console.log("locaso");
+//    })
+//    .catch(error => console.log(error));     // lanzamos el catch en caso de error
 
-//todo se realizo con exito   
+// //todo se realizo con exito   
 
+fetchData(`${API}/products`) 
+    .then(response => response.json())
+    .then(products =>{
+        console.log(products);
+        return fetchData(`${API}/products/${products[0].id}`)
+    })
+    .then(response => response.json())
+    .then(product =>{
+        console.log(product.title);
+        return fetchData(`${API}/products/${product.category.id}`)
+    })
+    .then(response => response.json())
+    .then(category =>{
+        console.log(category.name  );
+    })
+    .catch(error=>console.error(error))
+    .finally(() =>console.log("finished"));
